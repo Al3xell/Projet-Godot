@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cirit6ug1hvq"]
+
+[ext_resource type="Script" path="res://dodge_ball.gd" id="1_q62au"]
+[ext_resource type="Texture2D" uid="uid://dabqjx23v7fy2" path="res://textures/dodgeball.jpg" id="1_xi866"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_octn2"]
+bounce = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvf7p"]
+albedo_texture = ExtResource("1_xi866")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gvtek"]
+radius = 0.15
+height = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v0qqn"]
+margin = 0.0
+radius = 0.15
+
+[node name="DodgeBall" type="RigidBody3D"]
+mass = 0.15
+physics_material_override = SubResource("PhysicsMaterial_octn2")
+script = ExtResource("1_q62au")
+
+[node name="ball" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000205398, 0, -0.00136846)
+material_override = SubResource("StandardMaterial3D_qvf7p")
+mesh = SubResource("SphereMesh_gvtek")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000129461, 0.00137466, 5.90086e-06)
+shape = SubResource("SphereShape3D_v0qqn")
